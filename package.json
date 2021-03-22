@@ -1,6 +1,6 @@
 {
   "name": "unrepo",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A template repository cloning tool with support for private GitHub repos.",
   "main": "dist/index.js",
   "source": "src/index.ts",
