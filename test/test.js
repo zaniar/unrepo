@@ -35,10 +35,10 @@ after(async () => {
   await fs.remove('.output');
 });
 
-describe('create-clone', function () {
+describe('unrepo', function () {
   this.timeout(20000);
 
-  describe('create-clone + github', () => {
+  describe('unrepo + github', () => {
     [
       'rdmurphy/create-clone-test',
       'github:rdmurphy/create-clone-test',
@@ -78,7 +78,7 @@ describe('create-clone', function () {
     });
   });
 
-  describe('create-clone + gitlab', () => {
+  describe('unrepo + gitlab', () => {
     [
       'gitlab:rdmurphy_/create-clone-test',
       'https://gitlab.com/rdmurphy_/create-clone-test',
@@ -117,7 +117,7 @@ describe('create-clone', function () {
     });
   });
 
-  describe('create-clone + bitbucket', () => {
+  describe('unrepo + bitbucket', () => {
     [
       'bitbucket:rdmurphy_/create-clone-test',
       'https://bitbucket.org/rdmurphy_/create-clone-test',
@@ -156,7 +156,7 @@ describe('create-clone', function () {
     });
   });
 
-  describe('create-clone + gist', () => {
+  describe('unrepo + gist', () => {
     [
       'gist:rdmurphy/a331aa74143680d709faf3922b15c463',
       'https://gist.github.com/rdmurphy/a331aa74143680d709faf3922b15c463',
