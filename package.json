@@ -1,10 +1,12 @@
 {
   "name": "unrepo",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A template repository cloning tool with support for private GitHub repos.",
   "main": "dist/index.js",
   "source": "src/index.ts",
-  "bin": "dist/cli.js",
+  "bin": {
+    "unrepo": "dist/cli.js"
+  },
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "typebundle \"src/{cli,index}.ts\" --output dist --target 10 --compress",
