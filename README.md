@@ -17,6 +17,7 @@ A fork of [rdmurphy/create-clone](https://github.com/rdmurphy/create-clone)
 - 🎏 Supports GitHub repos, GitHub gists, GitLab and Bitbucket
 - 💡 Understands GitHub shorthand (`user/my-cool-template`) for referring to repositories
 - 🔐 With proper credentials in place **can clone private repositories on GitHub, GitLab and Bitbucket**
+- 🌳 Support subdirectory and single file
 
 ## Table of contents
 
@@ -57,16 +58,6 @@ This also means it works great when paired with `npx`.
 npx unrepo <repository> <dest>
 ```
 
-**However!** `unrepo`'s unique name gives it another super power &mdash; you can use a special feature of `npm init` and `yarn create`.
-
-```sh
-npm init clone <repository> <dest>
-# or
-yarn create clone <repository> <dest>
-```
-
-This is most of the reason this library exists. 😶
-
 ## Usage
 
 `unrepo` works any git host URLs that [`hosted-git-info`](https://github.com/npm/hosted-git-info) supports. By default the copy of the repository is output into your **current working directory**. A path to a different directory can be provided as the second parameter and will be created if necessary.
@@ -98,6 +89,11 @@ unrepo github:user/repository.git
 unrepo github:user/repository#branch
 unrepo github:user/repository.git#branch
 
+unrepo github:user/repository//subdirectory/
+unrepo github:user/repository.git//subdirectory/
+unrepo github:user/repository#branch//subdirectory/
+unrepo github:user/repository.git#branch//subdirectory/
+
 # github.com and www.github.com are both supported
 unrepo https://github.com/user/repository
 unrepo https://github.com/user/repository.git
@@ -117,6 +113,11 @@ unrepo gitlab:user/repository.git
 unrepo gitlab:user/repository#branch
 unrepo gitlab:user/repository.git#branch
 
+unrepo gitlab:user/repository//subdirectory/
+unrepo gitlab:user/repository.git//subdirectory/
+unrepo gitlab:user/repository#branch//subdirectory/
+unrepo gitlab:user/repository.git#branch//subdirectory/
+
 # gitlab.com and www.gitlab.com are both supported
 unrepo https://gitlab.com/user/repository
 unrepo https://gitlab.com/user/repository.git
@@ -135,6 +136,11 @@ unrepo bitbucket:user/repository
 unrepo bitbucket:user/repository.git
 unrepo bitbucket:user/repository#branch
 unrepo bitbucket:user/repository.git#branch
+
+unrepo bitbucket:user/repository//subdirectory/
+unrepo bitbucket:user/repository.git//subdirectory/
+unrepo bitbucket:user/repository#branch//subdirectory/
+unrepo bitbucket:user/repository.git#branch//subdirectory/
 
 # bitbucket.org and www.bitbucket.org are both supported
 unrepo https://bitbucket.org/user/repository

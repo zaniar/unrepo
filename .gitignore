@@ -81,3 +81,5 @@ typings/
 
 # Build directory
 dist
+
+.vscode

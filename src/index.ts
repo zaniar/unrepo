@@ -37,7 +37,7 @@ function prepareGitLabURL(info: hostedGitInfo) {
   return `https://gitlab.com/api/v4/projects/${id}/repository/archive.tar.gz${sha}`;
 }
 
-function downloadTarball(url: URL, type: string, dest: string) {
+function downloadTarball(url: URL, type: string, dest: string, subdir?: string) {
   return new Promise((resolve, reject) => {
     const headers = {} as OutgoingHttpHeaders;
 
@@ -75,7 +75,15 @@ function downloadTarball(url: URL, type: string, dest: string) {
             .catch(reject);
         }
 
-        const extractor = extract({ cwd: dest, strip: 1 });
+        const extractor = extract({
+          cwd: dest,
+          strip: 1 + (subdir ? subdir.split('/').length - 1 : 0),
+          filter: (path, stats) => {
+            return subdir
+              ? new RegExp(`[^\/]+\/${subdir}`).test(path)
+              : true
+          }
+        });
 
         res.pipe(extractor).on('finish', resolve).on('error', reject);
       })
@@ -92,6 +100,10 @@ export async function createClone(
   dest: string,
   { force = false }: CreateCloneOptions = {}
 ) {
+  const split = repoPath.split(/(?<!:)\/\//);
+  repoPath = split[0];
+  const subdir = split[1] || '';
+
   const info = hostedGitInfo.fromUrl(repoPath);
   const type = info.type;
 
@@ -115,5 +127,5 @@ export async function createClone(
   }
 
   // download the repo into the directory
-  await downloadTarball(url, type, dest);
+  await downloadTarball(url, type, dest, subdir);
 }
